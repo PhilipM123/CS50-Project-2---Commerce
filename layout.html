@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            #create_listing_form{
+                margin: auto;
+                margin-left: 50%;
+                transform: translateX(-50%);
+                margin-top: 300px;
+                width: 300px;
+                max-width: 90%;
+                height: 100%;
+                padding: 20px;
+                background: white;
+            }
+            #desc_box{
+                margin-left: 1%;
+                padding: 10px;
+                width: 30.7%
+            }
+            #desc_buttons{
+                margin-left: 0.5%;
+                padding: 10px;
+            }
+            #image_input{
+                margin-left: 0.5%;
+                padding: 10px;
+            }
+            #create_submit{
+                margin-left: 1%;
+                padding: 10px;
+            }
+            .info{
+                margin-left: 0.5%;
+            }
+            #img{
+                width: 500px;
+                height: 500px;
+            }
+            .btn{
+                padding: 10px;
+                margin: 10px;
+            }
+        </style>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+
+    </head>
+    <body>
+        <h1 style="margin-left: 1%;">Auctions</h1>
+        <div style="margin-left: 1%;">
+            {% if user.is_authenticated %}
+                Signed in as <strong>{{ user.username }}</strong>.
+            {% else %}
+                Not signed in.
+            {% endif %}
+        </div>
+        <ul class="nav" style="margin-left: 0.25%;">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'closed_listings' %}">Closed Listings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'categories' %}">Categories</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create_listing' %}">Create New Listing</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+        <hr>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

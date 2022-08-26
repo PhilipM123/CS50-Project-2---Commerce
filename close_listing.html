@@ -1,0 +1,26 @@
+{% extends "auctions/layout.html" %}
+<head>
+    {%block title%}  {%endblock%}
+
+</head>
+
+
+{%block body%}
+    <h1 style="margin-left: 0.5%;">{{listing.title}} - CLOSED</h1>
+     
+    <p class="info">Closing Price: <span style = "font-family: Georgia, 'Times New Roman', Times, serif;">${{listing.price}}</span></p>
+    <p class="info">Listing Date:  <span style = "font-family: Georgia, 'Times New Roman', Times, serif;">{{listing.listingdate}}</span></p>
+    <p class="info">Description: <span style = "font-family: Georgia, 'Times New Roman', Times, serif;">{{listing.content}}</span></p>
+
+    <img id="img" src="{{listing.pic}}" alt="image not loading..">
+
+    {% if winningbid %}
+    <br>
+    <p class="info">Bidding Winner: <span style = "font-family: Georgia, 'Times New Roman', Times, serif;">{{winningbid.user}}</span></p>
+    <br>
+    {% if winningbid.user == user %}
+    <p class="info">Congratulations {{user}} for winning this bidding auction!!</p>
+    {%endif%}
+    {%endif%}
+
+{%endblock%}

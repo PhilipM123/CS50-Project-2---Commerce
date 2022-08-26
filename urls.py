@@ -1,22 +1,20 @@
-"""commerce URL Configuration
+from django.urls import path
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import include, path
+from . import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("auctions.urls"))
+    path("", views.index, name="index"),
+    path("login", views.login_view, name="login"),
+    path("logout", views.logout_view, name="logout"),
+    path("register", views.register, name="register"),
+    path("create_listing", views.create_listing, name="create_listing"),
+    path("single_listing/<str:listingid>", views.single_listing, name="single_listing"),
+    path("add_watchlist/<str:listingid>", views.add_watchlist, name="add_watchlist"),
+    path("add_bid/<str:listingid>", views.add_bid, name="add_bid"),
+    path("close_listing/<str:listingid>", views.close_listing, name="close_listing"),
+    path("closed_listings", views.closed_listings, name="closed_listings"),
+    path("comment/<str:listingid>", views.comment, name="comment"),
+    path("watchlist", views.watchlist, name="watchlist"),
+    path("categories", views.categories, name="categories"),
+    path("category_listings<str:title>", views.category_listings, name="category_listings"),
 ]

@@ -1,0 +1,18 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    <ul>
+        {% for listing in listings %}
+            {% if listing.active %}
+            <h4><a href="{% url 'single_listing' listing.id  %}">{{listing.title}}</a></h4>
+            <p class="info">Listing Date:  <span style = "font-family: Georgia, 'Times New Roman', Times, serif;">{{listing.listingdate}}</span></p>
+            <p class="info">Description: <span style = "font-family: Georgia, 'Times New Roman', Times, serif;">{{listing.content}}</span></p>
+            <p class="info">Current Price: $<span style = "font-family: Georgia, 'Times New Roman', Times, serif;">{{listing.price}}</span></p>
+            <p class="info">Image: <img src="{{listing.pic}}" alt="Image not loading"> </p>
+            {%endif%}
+        {% endfor %}
+    </ul>
+    
+{% endblock %}

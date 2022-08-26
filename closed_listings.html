@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Closed Listings</h2>
+
+    <ul>
+        {% for listing in listings %}
+            {% if not listing.active %}
+                <li><a href="{% url 'close_listing' listing.id  %}">{{listing.title}}</a></li>
+            {%endif%}
+        {% endfor %}
+    </ul>
+    
+{% endblock %}
